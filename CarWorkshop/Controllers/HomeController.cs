@@ -20,7 +20,7 @@ namespace CarWorkshop.Controllers
 
         public IActionResult Privacy()
         {
-            var model = new List<Person>() { new Person { FirstName = "Adam", LastName = "Kozera" }, new Person { FirstName = "Adam", LastName = "Małysz" } };
+            var model = new List<Person>() { new Person { FirstName = "John", LastName = "Doe" }, new Person { FirstName = "Jan", LastName = "Kowalski" } };
             return View(model);
         }
         public IActionResult About()

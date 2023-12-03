@@ -59,6 +59,15 @@ namespace CarWorkshop.Controllers
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }
+        [Authorize]
+        public IActionResult Created()
+        {
+           /* if (User.Identity == null || User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { Area = "Identity" });
+            }*/
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateCarWorkshopCommand command) //tworzenie nowego warsztatu

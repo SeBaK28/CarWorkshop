@@ -5,6 +5,7 @@ using CarWorkshop.Application.CarWorkshop.EditValue;
 using CarWorkshop.Application.CarWorkshop.Queries.GetAllCarWorkshops;
 using CarWorkshop.Application.CarWorkshop.Queries.GetCarWorkshopByEncodedName;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Security.Principal;

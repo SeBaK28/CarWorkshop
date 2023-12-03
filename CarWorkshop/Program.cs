@@ -4,8 +4,15 @@ using Microsoft.Extensions.Options;
 using CarWorkshop.Infrastructure.Extensions;
 using CarWorkshop.Infrastructure.Seeders;
 using CarWorkshop.Application.Extensions;
+using Microsoft.AspNetCore.Identity;
+using CarWorkshop.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("CarWorkshopIdentityDbContextConnection") ?? throw new InvalidOperationException("Connection string 'CarWorkshopIdentityDbContextConnection' not found.");
+
+builder.Services.AddDbContext<CarWorkshopIdentityDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CarWorkshopIdentityDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);

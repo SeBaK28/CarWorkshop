@@ -18,6 +18,11 @@ namespace CarWorkshop.Controllers
             return View();
         }
 
+        public IActionResult NoAccess()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             var model = new List<Person>() { new Person { FirstName = "John", LastName = "Doe" }, new Person { FirstName = "Jan", LastName = "Kowalski" } };

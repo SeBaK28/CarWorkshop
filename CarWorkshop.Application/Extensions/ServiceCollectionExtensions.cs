@@ -1,6 +1,6 @@
-﻿using CarWorkshop.Application.ApplicationUser;
+﻿using AutoMapper;
+using CarWorkshop.Application.ApplicationUser;
 using CarWorkshop.Application.CarWorkshop.Commands.CreateCarWorkshop;
-using CarWorkshop.Application.CarWorkshop.EditValue;
 using CarWorkshop.Application.Mappings;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -22,8 +22,18 @@ namespace CarWorkshop.Application.Extensions
             services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(CreateCarWorkshopCommand));
             //services.AddScoped<ICarWorkshopService, CarWorkshopService>();
-            services.AddMediatR(typeof(GetCarWorkshopByEncodedNameToEdit));
-            services.AddAutoMapper(typeof(CarWorkshopMappingProfile));
+
+            //services.AddMediatR(typeof(GetCarWorkshopByEncodedNameToEdit));
+
+            services.AddScoped(provider => new MapperConfiguration(cfg =>
+            {
+                var scope = provider.CreateScope();
+                var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
+                cfg.AddProfile(new CarWorkshopMappingProfile(userContext));
+            }).CreateMapper()
+            );
+            //services.AddAutoMapper(typeof(CarWorkshopMappingProfile));
+
             services.AddValidatorsFromAssemblyContaining<CreateCarWorkshopCommandValidator>() // rejestruje wszystkie walidatory, wystarczy raz podać param generyczny i przypisuje się do wszystkich
                 .AddFluentValidationAutoValidation()    //walidacja z asp.net core jest zastąpiona paczką fluent Validation
                 .AddFluentValidationClientsideAdapters();   //Po stronie front-end zostanie dodana odpowiednia logika która zwórci uwagę na wszystkie reguły walidacji jakie na nie nakładamy 

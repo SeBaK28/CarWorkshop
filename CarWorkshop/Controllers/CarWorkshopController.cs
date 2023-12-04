@@ -42,15 +42,21 @@ namespace CarWorkshop.Controllers
             return View(dto);
         }
         [Route("CarWorkshop/{encodedName}/Edit")]
+        // [Authorize]
         public async Task<ActionResult> EditInputValue(string encodedName)  //akcja mająca za zadanie edycję InputValue
         {
             var dto = await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));
+            if (!dto.IsEditable)
+            {
+                return RedirectToAction("NoAccess", "Home");
+            }
             GetCarWorkshopByEncodedNameToEdit model = _mapper.Map<GetCarWorkshopByEncodedNameToEdit>(dto);
 
             return View(model);
         }
         [HttpPost]
         [Route("CarWorkshop/{encodedName}/Edit")]
+        //[Authorize]
         public async Task<IActionResult> EditInputValue(string encodedName, GetCarWorkshopByEncodedNameToEdit command) //edycja warsztatu
         {                                                                       //sprawdzanie czy tworzony warsztat już isniteje w bazie danych
             if (!ModelState.IsValid)

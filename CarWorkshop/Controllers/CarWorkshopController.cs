@@ -31,10 +31,10 @@ namespace CarWorkshop.Controllers
             return View(carWorkshops);
         }
 
-        public ActionResult Create() //zwraca formularz w którym user będzie w stanie wypisać konkretne informacje, na ich podstawie trafią one później do "Create(CreateCarWorkshopCommand comman)"
+        /*public ActionResult Create() //zwraca formularz w którym user będzie w stanie wypisać konkretne informacje, na ich podstawie trafią one później do "Create(CreateCarWorkshopCommand comman)"
         {
             return View();
-        }
+        }*/
         [Route("CarWorkshop/{encodedName}/Details")]
         public async Task<ActionResult> Details(string encodedName) 
         {
@@ -61,7 +61,7 @@ namespace CarWorkshop.Controllers
             return RedirectToAction(nameof(Index));
         }
         [Authorize]
-        public IActionResult Created()
+        public IActionResult Create()
         {
            /* if (User.Identity == null || User.Identity.IsAuthenticated)
             {

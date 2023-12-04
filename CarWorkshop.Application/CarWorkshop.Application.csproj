@@ -19,6 +19,10 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="ApplicationUser\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ApplicationUser\" />
+  </ItemGroup>
 </Project>

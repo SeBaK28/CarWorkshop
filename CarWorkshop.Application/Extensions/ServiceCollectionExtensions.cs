@@ -1,4 +1,5 @@
-﻿using CarWorkshop.Application.CarWorkshop.Commands.CreateCarWorkshop;
+﻿using CarWorkshop.Application.ApplicationUser;
+using CarWorkshop.Application.CarWorkshop.Commands.CreateCarWorkshop;
 using CarWorkshop.Application.CarWorkshop.EditValue;
 using CarWorkshop.Application.Mappings;
 using FluentValidation;
@@ -18,6 +19,7 @@ namespace CarWorkshop.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
+            services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(CreateCarWorkshopCommand));
             //services.AddScoped<ICarWorkshopService, CarWorkshopService>();
             services.AddMediatR(typeof(GetCarWorkshopByEncodedNameToEdit));

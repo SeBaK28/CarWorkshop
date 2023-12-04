@@ -63,7 +63,7 @@ namespace CarWorkshop.Controllers
         [Authorize]
         public IActionResult Create()
         {
-           /* if (User.Identity == null || User.Identity.IsAuthenticated)
+           /* if (User.Identity == null || User.Identity.IsAuthenticated) //ten if jest zastąpiony --> [Authorize]
             {
                 return RedirectToPage("/Account/Login", new { Area = "Identity" });
             }*/
@@ -71,12 +71,14 @@ namespace CarWorkshop.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CreateCarWorkshopCommand command) //tworzenie nowego warsztatu
         {                                                                       //sprawdzanie czy tworzony warsztat już isniteje w bazie danych
             if (!ModelState.IsValid)
             {
                 return View(command);
             }
+            
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }

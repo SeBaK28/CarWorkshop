@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace CarWorkshop.Domain.Entities
 {
@@ -16,5 +17,7 @@ namespace CarWorkshop.Domain.Entities
         public string EncodedName { get; private set; } = default!;
         public void EncodeName() => EncodedName = Name.ToLower().Replace(" ", "-");
         public string? About { get; set; }
+        public string? CreatedById { get; set; }
+        public IdentityUser? CreatedBy { get; set; }
     }
 }

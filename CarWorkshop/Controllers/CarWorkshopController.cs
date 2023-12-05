@@ -42,7 +42,7 @@ namespace CarWorkshop.Controllers
             return View(dto);
         }
         [Route("CarWorkshop/{encodedName}/Edit")]
-        // [Authorize]
+        //[Authorize (Roles ="Moderator")]
         public async Task<ActionResult> EditInputValue(string encodedName)  //akcja mająca za zadanie edycję InputValue
         {
             var dto = await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));

@@ -66,13 +66,17 @@ namespace CarWorkshop.Controllers
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }
-        [Authorize]
+        [Authorize(Roles = "Owner")]
         public IActionResult Create()
         {
-           /* if (User.Identity == null || User.Identity.IsAuthenticated) //ten if jest zastąpiony --> [Authorize]
-            {
-                return RedirectToPage("/Account/Login", new { Area = "Identity" });
-            }*/
+            /* if (User.Identity == null || User.Identity.IsAuthenticated) //ten if jest zastąpiony --> [Authorize]
+             {
+                 return RedirectToPage("/Account/Login", new { Area = "Identity" });
+             }*/
+            //if (!User.IsInRole("Owner")) //ten if jest zastąpiony [Authorize(Roles = "Owner")]
+            //{
+            //    return RedirectToAction("NoAccess", "Home");
+            //}
             return View();
         }
 

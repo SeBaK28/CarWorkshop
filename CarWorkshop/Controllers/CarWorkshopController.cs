@@ -4,13 +4,10 @@ using CarWorkshop.Application.CarWorkshop.Commands.CreateCarWorkshop;
 using CarWorkshop.Application.CarWorkshop.EditValue;
 using CarWorkshop.Application.CarWorkshop.Queries.GetAllCarWorkshops;
 using CarWorkshop.Application.CarWorkshop.Queries.GetCarWorkshopByEncodedName;
-using CarWorkshop.Extensions;
-using CarWorkshop.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Newtonsoft.Json;
 using System.Security.Principal;
 
 namespace CarWorkshop.Controllers
@@ -84,18 +81,16 @@ namespace CarWorkshop.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Owner")]
+        [Authorize]
         public async Task<IActionResult> Create(CreateCarWorkshopCommand command) //tworzenie nowego warsztatu
         {                                                                       //sprawdzanie czy tworzony warsztat już isniteje w bazie danych
             if (!ModelState.IsValid)
             {
                 return View(command);
             }
-
-            //await _mediator.Send(command);
-            this.SetNotification("succes", $"Created Car Workshop: {command.Name}");
+            
+            await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
-            //123
         }
     }
 }

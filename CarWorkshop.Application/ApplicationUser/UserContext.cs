@@ -5,10 +5,10 @@ using CarWorkshop.Application.CarWorkshop;
 
 namespace CarWorkshop.Application.ApplicationUser
 {
-    /*public interface IUserContext
+    public interface IUserContext
     {
-        CurrentUser GetCurrentUser();
-    }*/
+        CurrentUser? GetCurrentUser();
+    }
     public class UserContext :IUserContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

@@ -4,18 +4,21 @@ using CarWorkshop.Application.CarWorkshop.Commands.CreateCarWorkshop;
 using CarWorkshop.Application.CarWorkshop.EditValue;
 using CarWorkshop.Application.CarWorkshop.Queries.GetAllCarWorkshops;
 using CarWorkshop.Application.CarWorkshop.Queries.GetCarWorkshopByEncodedName;
+using CarWorkshop.Extensions;
+using CarWorkshop.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Newtonsoft.Json;
 using System.Security.Principal;
 
 namespace CarWorkshop.Controllers
 {
     public class CarWorkshopController : Controller
     {
-        private IMediator _mediator;
-        private IMapper _mapper;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
         //private readonly ICarWorkshopService _carWorkshopService;
 
@@ -88,8 +91,9 @@ namespace CarWorkshop.Controllers
             {
                 return View(command);
             }
-            
+
             await _mediator.Send(command);
+            this.SetNotification("success", $"Created CarWorkshop: {command.Name}");
             return RedirectToAction(nameof(Index));
         }
     }

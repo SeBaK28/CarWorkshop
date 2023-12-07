@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+
 namespace CarWorkshop.Models
 {
-	public class Notification
-	{
-		public Notification()
-		{
-		}
-	}
+    public class Notification
+    {
+        public Notification(string type, string message)
+        {
+            Type = type;
+            Message = message;
+        }
+        public string Type { get; set; }
+        public string Message { get; set; }
+    }
 }
-

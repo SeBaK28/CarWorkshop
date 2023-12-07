@@ -84,7 +84,7 @@ namespace CarWorkshop.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles ="Owner")]
         public async Task<IActionResult> Create(CreateCarWorkshopCommand command) //tworzenie nowego warsztatu
         {                                                                       //sprawdzanie czy tworzony warsztat już isniteje w bazie danych
             if (!ModelState.IsValid)

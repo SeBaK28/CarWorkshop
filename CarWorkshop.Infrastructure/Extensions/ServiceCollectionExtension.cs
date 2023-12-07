@@ -26,6 +26,8 @@ namespace CarWorkshop.Infrastructure.Extensions
             services.AddDefaultIdentity<IdentityUser>()//jako parametr generyczny przekazujemy klase usera aplikacji
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CarWorkshopDbContext>();//dzięki takiej konfiguracji cały mechanizm W Identity będzie w stanie integrować się z bazą danych aby w odpowiednie tabele i kolumny dodawać informacje o userach, ich rolach, czy loginach  
+
+            services.AddScoped<ICarWorkshopServiceRepository, CarWorkshopServiceRepository>();
                 
         }
     }

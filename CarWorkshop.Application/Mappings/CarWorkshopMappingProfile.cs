@@ -2,6 +2,7 @@
 using CarWorkshop.Application.ApplicationUser;
 using CarWorkshop.Application.CarWorkshop;
 using CarWorkshop.Application.CarWorkshop.EditValue;
+using CarWorkshop.Application.CarWorkshopService;
 using CarWorkshop.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,9 @@ namespace CarWorkshop.Application.Mappings
                 .ForMember(dto => dto.PostalCode, opt => opt.MapFrom(src => src.ContactDetails.PostalCode));
 
             CreateMap<CarWorkshopDTO, GetCarWorkshopByEncodedNameToEdit>();
+
+            CreateMap<CarWorkshopServiceDTO, Domain.Entities.CarWorkshopService>()
+                .ReverseMap();
         }
     }
 }

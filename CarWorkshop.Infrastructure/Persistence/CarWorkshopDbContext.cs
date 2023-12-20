@@ -23,9 +23,9 @@ namespace CarWorkshop.Infrastructure.Persistence
                 .OwnsOne(c => c.ContactDetails);
 
             modelBuilder.Entity<Domain.Entities.CarWorkshop>()
-                .HasMany(c=>  c.Services)
-                .WithOne(s=> s.CarWorkshop)
-                .HasForeignKey(s=>s.CarWorkshopId);
+                .HasMany(c =>  c.Services)
+                .WithOne(s => s.CarWorkshop)
+                .HasForeignKey(s => s.CarWorkshopId);
         }
     }
 }

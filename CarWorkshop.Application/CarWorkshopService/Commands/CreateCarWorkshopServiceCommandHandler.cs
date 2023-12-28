@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace CarWorkshop.Application.CarWorkshopService.Commands
 {
-    public class CreateCarWorkshopServiceCommandValidatorHandler : IRequestHandler<CreateCarWorkshopServiceCommand>
+    public class CreateCarWorkshopServiceCommandHandler : IRequestHandler<CreateCarWorkshopServiceCommand>
     {
         private readonly IUserContext _userContext;
         private readonly ICarWorkshopRepository _carWorkshopRepository;
         private readonly ICarWorkshopServiceRepository _carWorkshopServiceRepository;
 
-        public CreateCarWorkshopServiceCommandValidatorHandler(IUserContext userContext, ICarWorkshopRepository carWorkshopRepository,
+        public CreateCarWorkshopServiceCommandHandler(IUserContext userContext, ICarWorkshopRepository carWorkshopRepository,
             ICarWorkshopServiceRepository carWorkshopServiceRepository)
         {
             _userContext = userContext;

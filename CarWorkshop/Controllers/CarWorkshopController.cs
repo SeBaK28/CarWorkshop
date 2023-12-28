@@ -104,7 +104,7 @@ namespace CarWorkshop.Controllers
         [HttpPost]
         [Authorize(Roles = "Owner")]
         [Route("CarWorkshop/CarWorkshopService")]
-        public async Task<IActionResult> CreateCarWorkshopServiceCommand(CreateCarWorkshopServiceCommand command) 
+        public async Task<IActionResult> CreateCarWorkshopService(CreateCarWorkshopServiceCommand command) 
         {                                                                       
             if (!ModelState.IsValid)
             {

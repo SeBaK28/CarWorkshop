@@ -20,9 +20,13 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="ApplicationUser\" />
+    <Folder Include="CarWorkshopService\Queries\" />
+    <Folder Include="CarWorkshopService\Queries\GetCarWorkshopServices\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ApplicationUser\" />
+    <None Remove="CarWorkshopService\Queries\" />
+    <None Remove="CarWorkshopService\Queries\GetCarWorkshopServices\" />
   </ItemGroup>
 </Project>
